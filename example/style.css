@@ -1,0 +1,329 @@
+/*
+* Global Configurations
+*/
+
+:root {
+    --sidebar-icon-size: 1.9;
+    --sidebar-font-size: 1.2;
+    --sidebar-elem-size: 3.3;
+    --sidebar-full-size: 15;
+    --right-total-space: 6rem;
+
+    --tile-inter-margin: 0.9rem;
+    --body-inner-margin: 1.8rem;
+
+    --transition-speed: 0.6s;
+
+    --sidebar-hori-span: calc(var(--sidebar-elem-size) + var(--sidebar-full-size));
+}
+
+.nodisp{
+    display: none;
+}
+
+.shadowTile{
+    box-shadow: 0px 0px 2.4px 2.4px #ddd;
+}
+
+body{
+    margin: 0px;
+    padding-top: calc(var(--body-inner-margin) - var(--tile-inter-margin));
+    background-size: cover;
+    background-image: url(https://kartinkin.com/uploads/posts/2021-01/thumbs/1611236992_22-p-goluboi-nezhnii-pastelnii-fon-22.jpg);
+}
+
+div{
+    color: #333;
+    background-color: #fff;
+}
+
+#HighSidebarCont{
+    top: var(--body-inner-margin);
+    padding: 0px;
+}
+
+#MidSidebarCont{
+    top: calc(var(--body-inner-margin) + var(--sidebar-elem-size) * 1rem + var(--tile-inter-margin));
+    display: flex;
+    flex-flow: column;
+    max-height: calc(100vh - 21rem);
+}
+
+#MidSidebarCont:hover{
+    transition: all var(--transition-speed);
+}
+
+#LowerSidebarCont{
+    bottom: var(--body-inner-margin);
+    padding: 0px;
+}
+
+.sidebarElem{
+    position: relative;
+    align-items: center;
+    margin: 0px;
+    padding: 0px;
+    height: calc(var(--sidebar-elem-size) * 1rem);
+}
+
+#MidSidebarCont .sidebarElem:hover~.sidebarElem{
+    display: none;
+}
+
+#MidSidebarCont .sidebarElem:hover+.sidebarList{
+    display: block;
+    min-height: 30rem;
+}
+
+.sidebarList{
+    display: none;
+    background-color: #DDDDDD;
+    flex-grow: 1;
+    overflow-y: auto;
+}
+
+.sidebarList:hover{
+    display: block;
+    min-height: 30rem;
+}
+
+.sidebarList:hover~.sidebarElem{
+    display: none;
+}
+
+.sidebarGrp{
+    transition: all var(--transition-speed);
+    position: fixed;
+    left: calc(var(--sidebar-full-size) * 1rem);
+    height: auto;
+    width: calc(var(--sidebar-elem-size) * 1rem);
+    overflow: hidden;
+}
+
+.sidebarGrp:hover{
+    width: calc((var(--sidebar-full-size) + var(--sidebar-elem-size)) * 1rem - var(--body-inner-margin));
+    left: var(--body-inner-margin);
+}
+
+.sidebarGrp:hover .sidebarLabel{
+    width: auto;
+}
+
+.sidebarGrp:hover .sidebarElem{
+    transition: all var(--transition-speed);
+    width: 100%;
+}
+
+.sidebarElem .sidebarBtn{
+    position: absolute;
+    right: 0px;
+    top: 0px;
+}
+
+.sidebarBtn{
+    vertical-align: middle;
+    line-height: calc(var(--sidebar-elem-size) * 1rem);
+    width: calc(var(--sidebar-elem-size) * 1rem);
+    color: #333;
+    background-color: #fff;
+
+    font-weight: normal;
+    font-style: normal;
+    font-size: calc(var(--sidebar-icon-size) * 1rem);        /* Preferred icon size */
+    display: inline-block;
+    text-transform: none;
+    text-align: center;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
+
+    /* Support for all WebKit browsers. */
+    -webkit-font-smoothing: antialiased;
+    /* Support for Safari and Chrome. */
+    text-rendering: optimizeLegibility;
+
+    /* Support for Firefox. */
+    -moz-osx-font-smoothing: grayscale;
+
+    /* Support for IE. */
+    font-feature-settings: 'liga';
+}
+
+.sidebarElem:hover{
+    cursor: pointer;
+    text-shadow: 0px 0px 2px #666;
+}
+
+.sidebarLabel{
+    width: 0px;
+    overflow: hidden;
+    font-size: calc(var(--sidebar-font-size) * 1rem);
+    display: inline-block;
+    vertical-align: middle;
+    height: calc(var(--sidebar-elem-size) * 1rem);
+    line-height: calc(var(--sidebar-elem-size) * 1rem);
+    margin-left: var(--tile-inter-margin);
+    font-weight: 500;
+}
+
+.mid-content{
+    margin: var(--tile-inter-margin) 0px var(--tile-inter-margin) 0px;
+    position: relative;
+    left: calc(var(--sidebar-hori-span) * 1rem + var(--tile-inter-margin));
+    min-height: 6em;
+    min-width: 30vw;
+    width: calc(100vw - var(--sidebar-hori-span) * 2rem - var(--right-total-space) - 2 * var(--tile-inter-margin));
+}
+
+#midMulRow{
+    width: calc(100vw - var(--sidebar-hori-span) * 2rem - var(--right-total-space) - var(--tile-inter-margin));
+    height: calc(100vh - var(--body-inner-margin) * 2);
+    display: flex;
+    flex-wrap: wrap;
+    background: none;
+    overflow: auto;
+    scroll-snap-type: y mandatory;
+    align-content: stretch;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    
+}
+
+#midMulRow::-webkit-scrollbar { /* WebKit */
+    width: 0;
+    height: 0;
+}
+
+.mulRowElem{
+    margin: 0px var(--tile-inter-margin) var(--tile-inter-margin) 0px;
+    position: relative;
+    height: auto;
+    min-height: 12em;
+    width: auto;
+    flex-grow: 1;
+    scroll-snap-align: start;
+}
+
+.mulRowElem:first-child{
+    width: 100%;
+}
+
+.mulRowElem:last-child{
+    margin: 0px var(--tile-inter-margin) 0px 0px;
+}
+
+.mulRowElem img{
+    height: 80%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.mulRowElem h1{
+    width: auto;
+    margin: -3rem 2rem 0rem 1rem;
+    font-weight: 500;
+}
+
+.mulRowElem span{
+    margin: 0.3em;
+}
+
+@media screen and (max-width: 81rem){
+    #rightCont{
+        display: none !important;
+    }
+
+    .mid-content{
+        width: calc(100vw - var(--sidebar-hori-span) * 1rem - var(--tile-inter-margin) - var(--right-total-space));
+    }
+
+    #midMulRow{
+        width: calc(100vw - var(--sidebar-hori-span) * 1rem - var(--right-total-space));
+    }
+}
+
+@media screen and (max-width: 60rem){
+    :root{
+        --sidebar-full-size: 2.1;
+        --right-total-space: 2rem;
+    }
+
+    #MidSidebarCont .sidebarElem:hover~.sidebarElem{
+        display: block;
+    }
+    
+    #MidSidebarCont .sidebarElem:hover+div{
+        display: none;
+    }
+}
+
+#rightCont{
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    top: var(--body-inner-margin);
+    --body-right-margin: 4rem;
+    right: calc(var(--sidebar-elem-size) * 1rem + var(--body-right-margin));
+    width: calc(var(--sidebar-full-size) * 1rem + var(--right-total-space) - var(--body-right-margin));
+    height: calc(100vh - var(--body-inner-margin) * 2 + var(--tile-inter-margin));
+    background: none;
+}
+
+.rightMulCol{
+    display: flex;
+    justify-content: space-between;
+    margin: 0px 0px var(--tile-inter-margin) 0px;
+    width: 100%;
+    background: none;
+}
+
+.rightElem{
+    overflow: hidden;
+    margin: 0px 0px var(--tile-inter-margin) 0px;
+    width: 100%;
+    min-height: calc(var(--sidebar-elem-size) * 1rem);
+}
+
+.rightElem h1{
+    margin: 1.5rem 0px 0.3rem 1.2rem;
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+.rightElem hr{
+    margin: 0.3rem 1rem 0.3rem 1.2rem;
+    border: none;
+    border-top: 2px solid #666;
+}
+
+.rightRow{
+    margin: 0.6rem 1rem 0.6rem 1.2rem;
+}
+
+.rightRow h2{
+    display: inline-block;
+    font-size: 1.1rem;
+    font-weight: 400;
+    margin: 0px;
+}
+
+.rightRow span{
+    font-size: 1.1rem;
+    font-weight: 300;
+    float: right;
+}
+
+.rightBtns{
+    display: flex;
+    justify-content: space-between;
+}
+
+.rightBtns i:hover{
+    text-shadow: 0px 0px 2px #666;
+    cursor: pointer;
+}
+
+.rightComt{
+    flex-grow: 1;
+}
