@@ -4,7 +4,7 @@
 
 :root {
     --sidebar-icon-size: 1.9;
-    --sidebar-font-size: 1.2;
+    --barElem-font-size: 1.2;
     --sidebar-elem-size: 3.3;
     --sidebar-full-size: 13;
     --right-total-space: 9rem;
@@ -57,12 +57,71 @@
     }
 }
 
+@keyframes toFront{
+    0% {
+      transform: scale(0.9);
+    }
+    
+    100% {
+      transform: scale(1);
+    }
+}
+
 .nodisp{
     display: none;
 }
 
 .shadowTile{
     box-shadow: 0px 0px 2.4px 2.4px #ddd;
+}
+
+.fixedCont{
+    position: fixed;
+    top: var(--body-inner-margin);
+    background: none;
+}
+
+.btn{
+    vertical-align: middle;
+    line-height: calc(var(--sidebar-elem-size) * 1rem);
+    width: calc(var(--sidebar-elem-size) * 1rem);
+    color: #333;
+    background-color: #fff;
+
+    font-weight: normal;
+    font-style: normal;
+    font-size: calc(var(--sidebar-icon-size) * 1rem);        /* Preferred icon size */
+    display: inline-block;
+    text-transform: none;
+    text-align: center;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
+
+    /* Support for all WebKit browsers. */
+    -webkit-font-smoothing: antialiased;
+    /* Support for Safari and Chrome. */
+    text-rendering: optimizeLegibility;
+
+    /* Support for Firefox. */
+    -moz-osx-font-smoothing: grayscale;
+
+    /* Support for IE. */
+    font-feature-settings: 'liga';
+}
+
+.btn:hover{
+    text-shadow: 0px 0px 2px #666;
+    cursor: pointer;
+}
+
+.barElemLabel{
+    font-size: calc(var(--barElem-font-size) * 1rem);
+    vertical-align: middle;
+    line-height: calc(var(--sidebar-elem-size) * 1rem);
+    margin-left: var(--tile-inter-margin);
+    font-weight: 500;
 }
 
 body{
@@ -183,40 +242,10 @@ div{
     width: 100%;
 }
 
-.sidebarElem .sidebarBtn{
+.sidebarElem .btn{
     position: absolute;
     right: 0px;
     top: 0px;
-}
-
-.sidebarBtn{
-    vertical-align: middle;
-    line-height: calc(var(--sidebar-elem-size) * 1rem);
-    width: calc(var(--sidebar-elem-size) * 1rem);
-    color: #333;
-    background-color: #fff;
-
-    font-weight: normal;
-    font-style: normal;
-    font-size: calc(var(--sidebar-icon-size) * 1rem);        /* Preferred icon size */
-    display: inline-block;
-    text-transform: none;
-    text-align: center;
-    letter-spacing: normal;
-    word-wrap: normal;
-    white-space: nowrap;
-    direction: ltr;
-
-    /* Support for all WebKit browsers. */
-    -webkit-font-smoothing: antialiased;
-    /* Support for Safari and Chrome. */
-    text-rendering: optimizeLegibility;
-
-    /* Support for Firefox. */
-    -moz-osx-font-smoothing: grayscale;
-
-    /* Support for IE. */
-    font-feature-settings: 'liga';
 }
 
 .sidebarElem:hover{
@@ -227,42 +256,75 @@ div{
 .sidebarLabel{
     width: 0px;
     overflow: hidden;
-    font-size: calc(var(--sidebar-font-size) * 1rem);
     display: inline-block;
-    vertical-align: middle;
     height: calc(var(--sidebar-elem-size) * 1rem);
-    line-height: calc(var(--sidebar-elem-size) * 1rem);
-    margin-left: var(--tile-inter-margin);
-    font-weight: 500;
 }
 
 .mid-content{
-    margin: var(--tile-inter-margin) 0px var(--tile-inter-margin) 0px;
-    position: relative;
     left: calc(var(--sidebar-hori-span) * 1rem + var(--tile-inter-margin));
     height: calc(100vh - var(--body-inner-margin) * 2);
     min-width: 30vw;
     width: calc(100vw - var(--sidebar-hori-span) * 2rem - var(--right-total-space) - 2 * var(--tile-inter-margin));
+    animation: var(--transition-speed) ease-out 0s 1 toFront;
 }
 
 .mid-page{
     overflow-y: auto;
+    background-color: #fff;
 }
 
-#midMulRow{
-    width: calc(100vw - var(--sidebar-hori-span) * 2rem - var(--right-total-space) - var(--tile-inter-margin));
-    display: flex;
-    flex-wrap: wrap;
-    background: none;
+.mid-list{
+    filter: drop-shadow(0px 0px 3.9px #bbb);
+    overflow-y: auto;
+    scroll-snap-type: y mandatory;
+}
+
+.mid-list .midMulRow{
+    margin-bottom: var(--tile-inter-margin);
+}
+
+.mid-list .midMulRow:last-child{
+    margin-bottom: 0px;
+}
+
+.mid-list *{
+    scroll-snap-align: start;
+}
+
+.mid-hori-bar{
+    width: 100%;
+    margin-right: var(--tile-inter-margin);
+    position: relative;
+    margin-bottom: var(--tile-inter-margin);
+}
+
+.expBtn{
+    position: absolute;
+    right: 0px;
+}
+
+#midComp{
     overflow: auto;
     scroll-snap-type: y mandatory;
-    align-content: stretch;
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none;  /* Internet Explorer 10+ */
     filter: drop-shadow(0px 0px 3.9px #bbb);
 }
 
-#midMulRow::-webkit-scrollbar { /* WebKit */
+#midComp .mulRowElem:first-child{
+    width: 100%;
+    height: 18em;
+}
+
+.midMulRow,.mid-content{
+    width: calc(100vw - var(--sidebar-hori-span) * 2rem - var(--right-total-space) - var(--tile-inter-margin));
+    display: flex;
+    flex-wrap: wrap;
+    align-content: stretch;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    background: none;
+}
+
+.midMulRow::-webkit-scrollbar,.mid-content::-webkit-scrollbar{ /* WebKit */
     width: 0;
     height: 0;
 }
@@ -277,13 +339,9 @@ div{
     scroll-snap-align: start;
 }
 
-.mulRowElem:first-child{
-    width: 100%;
-    height: 18em;
-}
-
 .mulRowElem:last-child{
     margin: 0px var(--tile-inter-margin) 0px 0px;
+    width: 100%;
 }
 
 .mulRowElem img{
@@ -312,7 +370,7 @@ div{
         width: calc(100vw - var(--sidebar-hori-span) * 1rem - var(--tile-inter-margin) - var(--right-total-space));
     }
 
-    #midMulRow{
+    .midMulRow{
         width: calc(100vw - var(--sidebar-hori-span) * 1rem - var(--right-total-space));
     }
 }
@@ -333,15 +391,12 @@ div{
 }
 
 #rightCont{
-    position: fixed;
     display: flex;
     flex-direction: column;
-    top: var(--body-inner-margin);
     --body-right-margin: 5rem;
     right: calc(var(--sidebar-elem-size) * 1rem + var(--body-right-margin));
-    width: calc(var(--sidebar-full-size) * 1rem + var(--right-total-space) - var(--body-right-margin));
     height: calc(100vh - var(--body-inner-margin) * 2 + var(--tile-inter-margin));
-    background: none;
+    width: calc(var(--sidebar-full-size) * 1rem + var(--right-total-space) - var(--body-right-margin));
     perspective: 500px;
     perspective-origin: left;
 }
@@ -393,11 +448,6 @@ div{
 .rightBtns{
     display: flex;
     justify-content: space-between;
-}
-
-.rightBtns i:hover{
-    text-shadow: 0px 0px 2px #666;
-    cursor: pointer;
 }
 
 .rightComt{
