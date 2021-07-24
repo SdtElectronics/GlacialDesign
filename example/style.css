@@ -2,7 +2,7 @@
 * Global Configurations
 */
 
-:root {
+:root{
     --sidebar-icon-size: 1.9;
     --barElem-font-size: 1.2;
     --sidebar-elem-size: 3.3;
@@ -10,7 +10,7 @@
     --right-total-space: 9rem;
 
     --tile-inter-margin: 0.9rem;
-    --body-inner-margin: 1.8rem;
+    --body-inner-margin: 1.3rem;
 
     --transition-speed: 0.6s;
 
@@ -396,15 +396,14 @@ a:active{
 
 #midContTop+.mulRowElem>h1{
     font-size: 2.7rem;
-    margin-top: -3.4rem;
-    margin-bottom: -0.5rem;
+    margin: -3.4rem 0rem -0.5rem 0.6rem;
 }
 
 .mid-hori-tgl{
     position: absolute;
     width: 100%;
     height: calc(var(--sidebar-elem-size) * 1rem);
-    margin: calc(var(--sidebar-elem-size) * -1rem) 0px 0px 0px;
+    margin: calc(var(--sidebar-elem-size) * -1rem) var(--tile-inter-margin) 0px 0px;
 }
 
 .mid-hori-tgl::before{
@@ -461,7 +460,7 @@ a:active{
     margin: 0px var(--tile-inter-margin) var(--tile-inter-margin) 0px;
     position: relative;
     height: 13rem;
-    width: auto;
+    max-width: calc(100% - var(--tile-inter-margin));
     flex-grow: 1;
     scroll-snap-align: start;
 }
@@ -484,10 +483,13 @@ a:active{
     font-size: 1.7rem;
     color: #bbb;
     text-shadow: 0px 0px 1px #666;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .mulRowMeta{
-    margin: 0.6rem 0.6rem 0rem 0.6rem;;
+    margin: 0.6rem 0.6rem 0rem 1.6rem;;
     height: 1.9rem;
     text-align: justify; 
     cursor: default;
@@ -500,42 +502,27 @@ a:active{
 }
 
 .mulRowDate,.mulRowRight{
+    vertical-align: top;
     display: inline-block;
     line-height: 1.9rem;
-    color: #828282;;
+    color: #828282;
+}
+
+.mulRowDate::before{
+    font-family: "NerdFontsSymbols Nerd Font";
+    content: '\fb77';
+    position: absolute;
+    left: 0.6em;
+    vertical-align: middle;
+    text-align: center;
 }
 
 .mulRowRight{
     text-align: right;
-}
-
-@media screen and (max-width: 81rem){
-    #rightCont{
-        display: none !important;
-    }
-
-    .mid-content{
-        width: calc(100vw - var(--sidebar-hori-span) * 1rem - var(--tile-inter-margin) - var(--right-total-space));
-    }
-
-    .midMulRow{
-        width: calc(100vw - var(--sidebar-hori-span) * 1rem - var(--right-total-space));
-    }
-}
-
-@media screen and (max-width: 60rem){
-    :root{
-        --sidebar-full-size: 2.1;
-        --right-total-space: 2rem;
-    }
-
-    #MidSidebarCont .sidebarElem:hover~.sidebarElem{
-        display: block;
-    }
-    
-    #MidSidebarCont .sidebarElem:hover+div{
-        display: none;
-    }
+    max-width: calc(100% - 6em);
+    height: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 #rightCont{
@@ -600,4 +587,136 @@ a:active{
 
 .rightComt{
     flex-grow: 1;
+}
+
+#bottomNav{
+    display: none;
+    position: fixed;
+    left: calc(var(--body-inner-margin) + 1px);
+    bottom: var(--body-inner-margin);
+    width: calc(100vw - var(--body-inner-margin) * 2 - 2px);
+    height: calc(var(--sidebar-elem-size) * 1rem);
+    overflow: visible;
+    background: none;
+}
+
+.bottomGrp{
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.bottomPopBack{
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    display: none;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: -1;
+}
+
+.bottomPop{
+    --bottom-margin: calc(var(--tile-inter-margin) + var(--body-inner-margin) + var(--sidebar-elem-size) * 1rem);
+    position: fixed;
+    display: none;
+    bottom: var(--bottom-margin);
+    left: var(--body-inner-margin);
+    width: calc(100vw - var(--body-inner-margin) * 2);
+    max-height: calc(100vh - var(--bottom-margin) - var(--body-inner-margin));
+    overflow-y: auto;
+    background: none;
+    z-index: 2;
+}
+
+.bottomPopbtn{
+    margin: 0px;
+}
+
+.bottomPopbtn::after{
+    font-family: "NerdFontsSymbols Nerd Font";
+    content: "\f778";
+    position: absolute;
+    right: 0px;
+    height: calc(var(--sidebar-elem-size) * 1rem);
+    width: calc(var(--sidebar-elem-size) * 1rem);
+    font-size: calc(var(--sidebar-icon-size) * 1rem);
+    vertical-align: middle;
+    text-align: center;
+    line-height: calc(var(--sidebar-elem-size) * 1rem);
+    background-color: #fff;
+}
+
+.bottomPopbtn:checked::after{
+    color: #fff;
+    background-color: #333;
+}
+
+.bottomPopbtn:checked+.bottomPop{
+    display: flex;
+    flex-direction: column;
+}
+
+.bottomPopbtn:checked+.bottomPop+.bottomPopBack{
+    display: block;
+}
+
+@media screen and (max-width: 81rem){
+    #rightCont{
+        display: none !important;
+    }
+
+    .mid-content{
+        width: calc(100vw - var(--sidebar-hori-span) * 1rem - var(--tile-inter-margin) - var(--right-total-space));
+    }
+
+    .midMulRow{
+        width: calc(100vw - var(--sidebar-hori-span) * 1rem - var(--right-total-space));
+    }
+}
+
+@media screen and (max-width: 60rem){
+    :root{
+        --sidebar-full-size: 2.1;
+        --right-total-space: 2rem;
+    }
+
+    #MidSidebarCont .sidebarElem:hover~.sidebarElem{
+        display: block;
+    }
+    
+    #MidSidebarCont .sidebarElem:hover+div{
+        display: none;
+    }
+}
+
+@media screen and (max-width: 650px){  
+    :root{
+        --tile-inter-margin: 0.6rem;
+        --body-inner-margin: var(--tile-inter-margin);
+    }
+
+    .sidebarCont{
+        display: none !important;
+    }
+
+    .mid-content{
+        width: calc(100vw - var(--tile-inter-margin));
+        left: var(--tile-inter-margin);
+        height: calc(100vh - var(--body-inner-margin) * 3 - var(--sidebar-elem-size) * 1rem);
+    }
+
+    .mid-hori-bar,.mid-hori-tgl{
+        width: calc(100vw - var(--tile-inter-margin) * 2);
+    }
+
+    .midMulRow{
+        width: calc(100vw - var(--tile-inter-margin));
+    }
+
+    #bottomNav{
+        display: flex;
+        justify-content: space-between;
+    }
 }
