@@ -16,7 +16,7 @@
 
     --sidebar-hori-span: calc(var(--sidebar-elem-size) + var(--sidebar-full-size));
 
-    --tile-bkgr-color: rgba(255, 255, 255, 0.9);
+    --tile-bkgr-color: rgba(255, 255, 255, 1);
     --foreground-light: #828282;
     --foreground-dark: #333;
 }
@@ -86,7 +86,8 @@
 }
 
 .shadowTile{
-    box-shadow: 0px 0px 2.4px 2.4px #ddd;
+    filter: drop-shadow(0px 0px 3.9px #aaa);
+    background-color: var(--tile-bkgr-color);
 }
 
 .fixedCont{
@@ -164,17 +165,25 @@
     color: #fff;
 }
 
+html{
+    height: 100vh;
+    width: 100vw;
+    background: -webkit-linear-gradient(to bottom, #d3cce3, #e9e4f0); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to bottom, #d3cce3, #e9e4f0);
+}
+
 body{
     margin: 0px;
     padding-top: calc(var(--body-inner-margin) - var(--tile-inter-margin));
+    /*
     background-size: cover;
     background-image: url(resources/bkgr.jpg);
+    */
     font-family: source sans pro,Helvetica,Arial,sans-serif;
 }
 
 div{
     color: var(--foreground-dark);
-    background-color: var(--tile-bkgr-color);
 }
 
 a:link{
@@ -191,6 +200,13 @@ a:hover{
     
 a:active{
     text-decoration: none;
+}
+
+ul{
+    list-style-type: none;
+    margin: 0px;
+    padding-left: 0px;
+    background-color: var(--tile-bkgr-color);
 }
 
 .sidebarCont{
@@ -302,7 +318,7 @@ a:active{
 }
 
 .mid-list{
-    filter: drop-shadow(0px 0px 3.9px #bbb);
+    filter: drop-shadow(0px 0px 3.9px #aaa);
     overflow-y: auto;
     scroll-snap-type: y mandatory;
     -ms-scroll-snap-type: y mandatory;
@@ -330,7 +346,7 @@ a:active{
     overflow: auto;
     scroll-snap-type: y mandatory;
     -ms-scroll-snap-type: y mandatory;
-    filter: drop-shadow(0px 0px 3.9px #bbb);
+    filter: drop-shadow(0px 0px 3.9px #aaa);
 }
 
 #midContTop+.mulRowElem{
@@ -372,6 +388,7 @@ a:active{
     height: calc(var(--sidebar-elem-size) * 1em);
     margin-right: var(--tile-inter-margin);
     position: relative;
+    background-color: var(--tile-bkgr-color);
     z-index: -1;
 }
 
@@ -405,6 +422,7 @@ a:active{
     max-width: calc(100% - var(--tile-inter-margin));
     flex-grow: 1;
     scroll-snap-align: start;
+    background-color: var(--tile-bkgr-color);
 }
 
 .mulRowElem:last-child{
@@ -413,11 +431,63 @@ a:active{
 }
 
 .mulRowPrev{
+    position: relative;
     display: block;
     width: 100%;
     height: 11rem;
     background-size: cover;
     cursor: pointer;
+    background: none;
+    overflow: hidden;
+}
+
+.mulRowElem::before, html::before{
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    display: block;
+
+    background: 
+		linear-gradient(180deg, rgba(248, 184, 139,0) 20%, rgba(248, 184, 139,.1) 20%, rgba(248, 184, 139,.1) 40%, rgba(248, 184, 139,.2) 40%, rgba(248, 184, 139,.2) 60%, rgba(248, 184, 139,.4) 60%, rgba(248, 184, 139,.4) 80%, rgba(248, 184, 139,.5) 80%),
+        linear-gradient(45deg, rgba(250, 248, 132,.3) 20%, rgba(250, 248, 132,.4) 20%, rgba(250, 248, 132,.4) 40%, rgba(250, 248, 132,.5) 40%, rgba(250, 248, 132,.5) 60%, rgba(250, 248, 132,.6) 60%, rgba(250, 248, 132,.6) 80%, rgba(250, 248, 132,.7) 80%),
+        linear-gradient(-45deg, rgba(186, 237, 145,0) 20%, rgba(186, 237, 145,.1) 20%, rgba(186, 237, 145,.1) 40%, rgba(186, 237, 145,.2) 40%, rgba(186, 237, 145,.2) 60%, rgba(186, 237, 145,.4) 60%, rgba(186, 237, 145,.4) 80%, rgba(186, 237, 145,.6) 80%),
+		linear-gradient(90deg, rgba(178, 206, 254,0) 20%, rgba(178, 206, 254,.3) 20%, rgba(178, 206, 254,.3) 40%, rgba(178, 206, 254,.5) 40%, rgba(178, 206, 254,.5) 60%, rgba(178, 206, 254,.7) 60%, rgba(178, 206, 254,.7) 80%, rgba(178, 206, 254,.8) 80%),
+        linear-gradient(-90deg, rgba(242, 162, 232,0) 20%, rgba(242, 162, 232,.4) 20%, rgba(242, 162, 232,.4) 40%, rgba(242, 162, 232,.5) 40%, rgba(242, 162, 232,.5) 60%, rgba(242, 162, 232,.6) 60%, rgba(242, 162, 232,.6) 80%, rgba(242, 162, 232,.8) 80%),
+        linear-gradient(180deg, rgba(254, 163, 170,0) 20%, rgba(254, 163, 170,.4) 20%, rgba(254, 163, 170,.4) 40%, rgba(254, 163, 170,.6) 40%, rgba(254, 163, 170,.6) 60%, rgba(254, 163, 170,.8) 60%, rgba(254, 163, 170,.8) 80%, rgba(254, 163, 170,.9) 80%)
+    ;
+	background-color: rgb(254, 163, 170);
+    filter: hue-rotate(180deg);
+}
+
+.mulRowElem::before{
+    height: calc(100% - 1.9rem - 2px);
+}
+
+.mulRowElem:nth-child(6n)::before{
+    filter: hue-rotate(150deg);
+}
+
+.mulRowElem:nth-child(6n+1)::before{
+    filter: hue-rotate(140deg);
+}
+
+.mulRowElem:nth-child(6n+2)::before{
+    filter: hue-rotate(160deg);
+}
+
+.mulRowElem:nth-child(6n+3)::before{
+    filter: hue-rotate(140deg);
+}
+
+.mulRowElem:nth-child(6n+4)::before{
+    filter: hue-rotate(170deg);
+}
+
+.mulRowElem:nth-child(6n+5)::before{
+    filter: hue-rotate(160deg);
 }
 
 .mulRowPrev:hover{
@@ -425,6 +495,8 @@ a:active{
 }
 
 .mulRowElem>h1{
+    position: relative;
+    z-index: 1;
     width: fit-content;
     margin: -2.3rem 2rem 0px 0.6rem;
     font-weight: 500;
@@ -502,9 +574,32 @@ a:active{
 }
 
 .rightElem>h1{
-    margin: 1.2rem 0px 0.3rem 1.2rem;
-    font-size: 1.4rem;
+    position: relative;
+    margin: 0rem 1rem 0rem 1rem;
+    font-size: 1.3rem;
     font-weight: 500;
+    line-height: 3.3rem;
+    background: none;
+}
+
+.rightElem>h1::after{
+    position: absolute;
+    bottom: 3px;
+    left: 0px;
+    width: 3rem;
+    background-color: #333;
+    content: "";
+    height: 0.6px;
+}
+
+.rightElem>h1::before{
+    position: absolute;
+    bottom: 3px;
+    left: 0px;
+    width: 100%;
+    background-color: #aaa;
+    content: "";
+    height: 0.6px;
 }
 
 .rightElem>hr{
@@ -514,7 +609,7 @@ a:active{
 }
 
 .rightRow{
-    margin: 0.6rem 1rem 0.6rem 1.2rem;
+    margin: 0.6rem 1.1rem 0.6rem 1.1rem;
 }
 
 .rightRow>h2{
@@ -553,6 +648,18 @@ a:active{
     position: relative;
     overflow: hidden;
     text-overflow: ellipsis;
+    background-color: var(--tile-bkgr-color);
+}
+
+.bottomGrp::before{
+    content: "";
+    position: absolute;
+    display: block;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 100%;
+    filter: drop-shadow(0px 0px 3.9px #aaa);
 }
 
 .bottomPopBack{
@@ -575,7 +682,6 @@ a:active{
     width: calc(100vw - var(--body-inner-margin) * 2);
     max-height: calc(100vh - var(--bottom-margin) - var(--body-inner-margin));
     overflow-y: auto;
-    background: none;
     z-index: 2;
 }
 
