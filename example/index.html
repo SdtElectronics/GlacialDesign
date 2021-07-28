@@ -54,9 +54,16 @@
                     </a>              
                 </li>
                 
-                <ul class = "sidebarList noScrollbar">
-    
-                </ul>
+                <div class = "sidebarList noScrollbar">
+                    <div class = "tagCont rightRow">
+                        <a class = "hashTag">aaa</a>
+                        <a class = "hashTag">aa</a>
+                        <a class = "hashTag">aaaff</a>
+                        <a class = "hashTag">aaa</a>
+                        <a class = "hashTag">aaa</a>
+                        <a class = "hashTag">aaa</a>
+                    </div>
+                </div>
     
                 <li id = "history" class = "sidebarElem">
                     <span class = "sidebarLabel barElemLabel">
@@ -353,11 +360,13 @@
                 </a>
             </div>
             
-            <div class = "bottomGrp">
+            <form class = "bottomGrp">
                 <a class = "btn nf nf-mdi-home">
                 </a>
 
-                <input id = "bottomListBtn" type="checkbox" class = "bottomPopbtn btn"/>
+                <input id = "bottomListBtn" type="radio" name="option" class = "bottomPopbtn btn"/>
+
+                <input id = "bottomRst" type="reset" class = "bottomRstbtn"/>
 
                 <ul class = "bottomPop noScrollbar">
                     <li class = "bottomPopLi">
@@ -380,18 +389,14 @@
                         <span class = "barElemLabel">Gallery</span>
                     </li>
                 </ul>
-                
-                <label for = "bottomListBtn" class = "bottomPopBack">
-                </label>
 
-                <input id = "bottomMsgBtn" type="checkbox" class = "bottomPopbtn btn"/>
+                <input id = "bottomMsgBtn" type="radio" name="option" class = "bottomPopbtn btn"/>
+
+                <input type="reset" class = "bottomRstbtn"/>
 
                 <div class = "bottomPop noScrollbar">
                     
                 </div>
-                
-                <label for = "bottomMsgBtn" class = "bottomPopBack">
-                </label>
 
                 <div class = "bottomPop noScrollbar">
 
@@ -402,7 +407,10 @@
 
                 <a class = "btn nf nf-mdi-information" href = "about.html">
                 </a>
-            </div>
+
+                <label for = "bottomRst" class = "bottomPopBack">
+                </label>
+            </form>
         </nav>
     </body>
 </html>
