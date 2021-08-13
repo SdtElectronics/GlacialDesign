@@ -377,6 +377,19 @@ ul{
     overflow-y: overlay;
 }
 
+.articleH1{
+    margin: 0px;
+    padding: 1.8rem 2rem 1.5rem 2rem;
+    font-size: 2.4rem;
+    font-weight: 700;
+    line-height: 2rem;
+    color: var(--foreground-dark);
+}
+
+.articleBody{
+    padding: 0rem 2rem 1.5rem 2rem;
+}
+
 #aboutBanner{
     display: flex;
     flex-wrap: wrap;
@@ -494,6 +507,7 @@ ul{
     flex-grow: 1;
     scroll-snap-align: start;
     background-color: var(--tile-bkgr-color);
+    overflow: hidden;
 }
 
 .mulRowElem:last-child{
@@ -694,7 +708,7 @@ ul{
 }
 
 .rightRow{
-    margin: 0.6rem 1.1rem 0.6rem 1.1rem;
+    margin: 0.5rem 1.1rem 0.5rem 1.1rem;
 }
 
 .rightRow>h2{
@@ -725,6 +739,10 @@ ul{
 
 .rightComt{
     flex-grow: 1;
+}
+
+.colophon{
+    padding-bottom: 0.3rem;
 }
 
 .colophon>.rightRow>*{
@@ -841,6 +859,10 @@ ul.bottomPop{
 
 #bottomMsgBtn::after{
     content: "\f865";
+}
+
+#bottomShareBtn::after{
+    content: "\f996";
 }
 
 .bottomLabel{

@@ -328,7 +328,7 @@
 
             <div class = "rightElem shadowTile rightComt">
                 <h1 class = "lstH1">Comments</h1>
-
+                <div id = "vcomments" style = "padding: 0.6rem 0.8rem 1rem 0.8rem;"></div>
             </div>
 
             <!--
@@ -369,20 +369,20 @@
             <form class = "bottomGrp">
                 <a class = "btn nf nf-mdi-home">
                 </a>
-
+        
                 <input id = "bottomListBtn" type="radio" name="option" class = "bottomPopbtn btn"/>
-
+        
                 <input id = "bottomRst" type="reset" class = "bottomRstbtn"/>
-
+        
                 <ul class = "bottomPop noScrollbar">
                     <li class = "bottomPopLi">
                         <a class = "bottomLabel barElemLabel">Categories</a>
                     </li>
-
+        
                     <li class = "bottomPopLi">
                         <a class = "bottomLabel barElemLabel">Tags</a>
                     </li>
-
+        
                     <li class = "bottomPopLi">
                         <a class = "bottomLabel barElemLabel">Archives</a>
                     </li>
@@ -390,16 +390,16 @@
                     <li class = "bottomPopLi">
                         <a class = "bottomLabel barElemLabel">Projects</a>
                     </li>
-
+        
                     <li class = "bottomPopLi">
                         <a class = "bottomLabel barElemLabel">Gallery</a>
                     </li>
                 </ul>
-
+        
                 <input id = "bottomMsgBtn" type="radio" name="option" class = "bottomPopbtn btn"/>
-
+        
                 <input type="reset" class = "bottomRstbtn"/>
-
+        
                 <div class = "bottomPop noScrollbar">
                     <div class = "colophon rightElem shadowTile">
                         <h1 class = "lstH1">Colophon</h1>
@@ -417,16 +417,32 @@
                         </div>
                     </div>
                 </div>
-
-                <a class = "btn nf nf-mdi-share_variant">
-                </a>
-
+        
+                <input id = "bottomShareBtn" type="radio" name="option" class = "bottomPopbtn btn"/>
+        
+                <input type="reset" class = "bottomRstbtn"/>
+        
+                <div class = "bottomPop noScrollbar">
+        
+                </div>
+        
                 <a class = "btn nf nf-mdi-information" href = "about.html">
                 </a>
-
+        
                 <label for = "bottomRst" class = "bottomPopBack">
                 </label>
             </form>
         </nav>
     </body>
+
+    <script src="https://unpkg.com/valine@1.4.14/dist/Valine.min.js"></script>
+
+    <script>
+        new Valine({
+            el: '#vcomments',
+            appId: '',
+            appKey: '',
+            lang: 'en'
+        })
+    </script>
 </html>
